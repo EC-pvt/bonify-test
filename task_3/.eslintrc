@@ -20,8 +20,12 @@
       "settings": {
         "import/resolver": {
           "babel-module":{
-            "extensions": [".js", ".jsx"]
+            "alias":{
+              "Home":"./src/Home",
+              "reduxUtils":"./src/reduxUtils",
+              "api":"./src/api"
             }
+          }
         }
       }
   }

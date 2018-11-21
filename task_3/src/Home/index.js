@@ -5,13 +5,14 @@ import Home from './template';
 
 const homeActions = actions.HOME;
 const mapDispatchToProps = (dispatch) => ({
-  bootstrap: () => dispatch(homeActions.BOOTSTRAP.create()),
-  increment: () => dispatch(homeActions.INCREMENT.create()),
-  decrement: () => dispatch(homeActions.DECREMENT.create()),
+  addLocation: (address) => dispatch(homeActions.ADD_LOCATION.create(address)),
+  changeLocation: (direction) => dispatch(homeActions.CHANGE_LOCATION.create(direction)),
 });
 
 const mapStateToProps = (state) => ({
-  counter: state.home.counter,
+  locations: state.home.locations,
+  videos: state.home.videos,
+  error: state.home.error,
 });
 
 export default connect(

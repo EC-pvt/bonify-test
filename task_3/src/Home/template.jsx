@@ -1,50 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { HomeWrapper, Title } from './styles';
 
-class Home extends React.Component {
+class Home extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = { toggle: true };
+    this.state = { address: '' };
   }
 
-  componentDidMount() {
-    this.props.bootstrap();
-  }
+  handleChange = (e) => {
+    this.setState({ address: e.target.value });
+  };
 
-  toggler = () => {
-    this.setState({ toggle: !this.state.toggle });
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { address } = this.state;
+    const { addLocation } = this.props;
+    console.log(address);
+    addLocation(address);
+  };
+
+  handleChangeLocation = (e) => {
+    const { changeLocation } = this.props;
+    changeLocation(e.target.dataset.direction);
   };
 
   render() {
+    const { address } = this.state;
+    const { locations, videos, error } = this.props;
     return (
-      <div className="Home">
-        <h1 onClick={this.toggler} onKeyPress={this.toggler}>
-          {`${this.props.salutation}, ${this.state.toggle ? 'World' : 'Moon'}!`}
-        </h1>
-        <h2 onClick={this.props.increment} onKeyPress={this.props.increment}>
-          Increment
-        </h2>
-        <h2 onClick={this.props.decrement} onKeyPress={this.props.decrement}>
-          Decrement
-        </h2>
-
-        <h3>{this.props.counter}</h3>
-      </div>
+      <HomeWrapper>
+        <Title>Map cose</Title>
+        <form onSubmit={this.handleSubmit}>
+          <input className="input" type="text" value={address} onChange={this.handleChange} />
+          <button type="submit" className="button">
+            Search
+          </button>
+        </form>
+        <h3>{`Locations: ${locations.map((el) => `${el.address}, `)}`}</h3>
+        <h3>{`Videos: ${videos.map((el) => el.title)}`}</h3>
+        <button type="button" data-direction="prev" onClick={this.handleChangeLocation}>
+          prev
+        </button>
+        <button type="button" data-direction="next" onClick={this.handleChangeLocation}>
+          next
+        </button>
+        <h3>{error}</h3>
+      </HomeWrapper>
     );
   }
 }
 
-Home.defaultProps = {
-  salutation: 'Hi',
-  counter: 0,
-};
-
 Home.propTypes = {
-  salutation: PropTypes.string,
-  counter: PropTypes.number,
-  bootstrap: PropTypes.func.isRequired,
-  increment: PropTypes.func.isRequired,
-  decrement: PropTypes.func.isRequired,
+  locations: PropTypes.arrayOf(PropTypes.object).isRequired,
+  videos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addLocation: PropTypes.func.isRequired,
+  changeLocation: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
 };
 
 export default Home;

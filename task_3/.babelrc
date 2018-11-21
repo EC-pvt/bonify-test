@@ -11,7 +11,7 @@
         "alias":{
           "Home":"./src/Home",
           "reduxUtils":"./src/reduxUtils",
-          "theme":"./src/theme"
+          "api":"./src/api"
         }
       }]
     ]
