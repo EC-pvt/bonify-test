@@ -17,14 +17,6 @@ module.exports = {
           plugins: ['transform-class-properties'], //used to write functions without explicit binding inside classes
         },
       },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
     ],
   },
   resolve: {

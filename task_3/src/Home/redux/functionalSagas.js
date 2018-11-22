@@ -2,23 +2,30 @@ import { put, select } from 'redux-saga/effects';
 import api from 'api';
 import actions from 'reduxUtils/actions';
 
+const findApproxAddress = (addresses) => {
+  const firstApprox = addresses.find((address) => address.geometry.location_type === 'APPROXIMATE');
+  return firstApprox
+    ? {
+        address: firstApprox.formatted_address,
+        coordinates: firstApprox.geometry.location,
+        active: true,
+      }
+    : {
+        address: addresses[0].formatted_address,
+        coordinates: addresses[0].geometry.location,
+        active: true,
+      };
+};
+
 export function* addLocationRequest(payload) {
   yield put(actions.HOME.ADD_LOCATION_REQUEST.create());
-  const { data, error } = yield api.getCoordinates(payload);
+  const { data, error } = yield api.getAddress(payload);
   if (data && data.status === 'OK') {
-    const result = data.results.reduce(
-      (acc, curr) =>
-        acc.concat({
-          address: curr.formatted_address,
-          coordinates: curr.geometry.location,
-        }),
-      []
-    );
+    const newLocation = findApproxAddress(data.results);
     const locations = yield select((state) => state.home.locations);
     const updatedLocations = locations
-      .concat(result)
-      .map((location) => ({ ...location, active: false }));
-    updatedLocations[updatedLocations.length - 1].active = true;
+      .map((location) => ({ ...location, active: false }))
+      .concat(newLocation);
     yield put(actions.HOME.ADD_LOCATION_REQUEST_SUCCESS.create(updatedLocations));
   } else {
     yield put(actions.HOME.ADD_LOCATION_REQUEST_ERROR.create(data.status || error));
