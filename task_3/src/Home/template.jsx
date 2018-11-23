@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import GoogleMap from './Map/GoogleMap';
-import VideoTile from './Video/VideoTile';
+import VideoTile from './Video';
+import History from './History';
 import {
   HomeWrapper,
   Title,
   MapContainer,
-  ActiveLocation,
-  HistoryContainer,
-  HistoryTable,
-  HistoryTile,
   VideoTable,
   NavButton,
+  NavPrev,
+  NavNext,
 } from './styles';
 
 class Home extends React.PureComponent {
@@ -31,57 +30,41 @@ class Home extends React.PureComponent {
     const { locations, videos, error } = this.props;
     const activeLocation = this.getActiveLocation(locations);
     return (
-      <React.Fragment>
-        <HomeWrapper>
-          <Title>Map cose</Title>
-          <MapContainer>
-            <GoogleMap
-              locations={locations}
-              center={
-                activeLocation
-                  ? { lat: activeLocation.coordinates.lat, lng: activeLocation.coordinates.lng }
-                  : {
-                      lat: 52.5,
-                      lng: 13.4,
-                    }
-              }
-              onAddLocation={this.handleAddLocation}
-            />
+      <HomeWrapper>
+        <Title>Latest YouTube videos by location</Title>
+        <MapContainer>
+          <GoogleMap
+            locations={locations}
+            center={
+              activeLocation
+                ? { lat: activeLocation.coordinates.lat, lng: activeLocation.coordinates.lng }
+                : {
+                    lat: 52.5,
+                    lng: 13.4,
+                  }
+            }
+            onAddLocation={this.handleAddLocation}
+          />
+          <History error={error} locations={locations} getActiveLocation={this.getActiveLocation} />
+        </MapContainer>
 
-            <ActiveLocation>
-              {`Active Location: ${activeLocation ? activeLocation.address : ''}`}
-            </ActiveLocation>
+        <VideoTable>
+          {videos.map((el, i) => (
+            <VideoTile key={i} video={el} />
+          ))}
+        </VideoTable>
 
-            <HistoryContainer>
-              <p>Locations: </p>
-              <HistoryTable>
-                {locations
-                  .slice()
-                  .reverse()
-                  .map((el, i) => (
-                    <HistoryTile key={i} active={el.active}>
-                      {el.address}
-                    </HistoryTile>
-                  ))}
-              </HistoryTable>
-            </HistoryContainer>
-          </MapContainer>
-
-          <VideoTable>
-            {videos.map((el, i) => (
-              <VideoTile key={i} video={el} />
-            ))}
-          </VideoTable>
-
-          <h3>{error}</h3>
-        </HomeWrapper>
-        <NavButton type="button" data-direction="prev" onClick={this.handleChangeLocation}>
-          Previous Location
-        </NavButton>
-        <NavButton type="button" data-direction="next" onClick={this.handleChangeLocation}>
-          Next Location
-        </NavButton>
-      </React.Fragment>
+        <NavPrev>
+          <NavButton type="button" data-direction="prev" onClick={this.handleChangeLocation}>
+            ←
+          </NavButton>
+        </NavPrev>
+        <NavNext>
+          <NavButton type="button" data-direction="next" onClick={this.handleChangeLocation}>
+            →
+          </NavButton>
+        </NavNext>
+      </HomeWrapper>
     );
   }
 }

@@ -1,29 +1,53 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Home from './template';
+import { initialState } from './redux/reducer';
 
 const defaultProps = {
-  salutation: 'Morning',
-  counter: null,
-  bootstrap: jest.fn(),
-  increment: jest.fn(),
-  decrement: jest.fn(),
+  ...initialState,
+  addLocation: jest.fn(),
+  changeLocation: jest.fn(),
 };
 
-test('IF we bootstrap,  we see "{salutation}, World!"', () => {
-  const app = shallow(<Home {...defaultProps} />);
-  expect(app.find('h1').text()).toEqual('Morning, World!');
-});
+const mockedLocations = {
+  locations: [
+    {
+      address: 'Südliche Innenstadt, Potsdam, Germania',
+      coordinates: {
+        lat: 52.3923234,
+        lng: 13.0725659,
+      },
+      active: false,
+    },
+    {
+      address: '10117 Berlino, Germania',
+      coordinates: {
+        lat: 52.5155098,
+        lng: 13.3847539,
+      },
+      active: false,
+    },
+    {
+      address: '15230 Francoforte, Germania',
+      coordinates: {
+        lat: 52.3367474,
+        lng: 14.5552348,
+      },
+      active: true,
+    },
+  ],
+};
 
-test('IF we see "World", WHEN click, THEN we see "Moon"', () => {
-  const app = shallow(<Home {...defaultProps} />);
-
-  const h1 = app.find('h1');
-  expect(h1.text()).toEqual('Morning, World!');
-
-  h1.simulate('click');
-  app.update(); //to detect change of state we gotta update our shallow copy of component
-
-  const h1New = app.find('h1');
-  expect(h1New.text()).toEqual('Morning, Moon!');
+test('IF we provide array of locations, THEN getActiveLocation gives us the one with key active===true', () => {
+  const props = { ...defaultProps, ...mockedLocations };
+  const app = shallow(<Home {...props} />);
+  const activeLocation = app.instance().getActiveLocation(app.instance().props.locations);
+  expect(activeLocation).toEqual({
+    address: '15230 Francoforte, Germania',
+    coordinates: {
+      lat: 52.3367474,
+      lng: 14.5552348,
+    },
+    active: true,
+  });
 });

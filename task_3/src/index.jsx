@@ -6,15 +6,12 @@ import store from 'reduxUtils/store';
 import App from './App';
 
 const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'Operator Mono';
-    src: url('../fonts/Operator-Mono.ttf');
-  }
-
   body {
     margin: 0;
     padding:20px;
-    background:linear-gradient(to right,#7474BF,#348AC7);
+    font-family:'Raleway',Calibri,sans-serif;
+    font-size:16px;
+    background: linear-gradient(to right, #0f0c29, #302b63, #0f0c29);
   }
 `;
 

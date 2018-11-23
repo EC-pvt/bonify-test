@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Tile, VideoContainer, VideoTitle } from './styles';
 
-class GoogleMap extends React.PureComponent {
+class Video extends React.PureComponent {
   render() {
     const { video } = this.props;
     return (
@@ -22,8 +22,8 @@ class GoogleMap extends React.PureComponent {
   }
 }
 
-GoogleMap.propTypes = {
+Video.propTypes = {
   video: PropTypes.object.isRequired,
 };
 
-export default GoogleMap;
+export default Video;

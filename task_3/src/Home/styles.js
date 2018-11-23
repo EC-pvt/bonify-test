@@ -1,16 +1,22 @@
 import styled from 'styled-components';
 
 const whiteText = '#fafafa';
-//const error = 'red';
 
 const HomeWrapper = styled.div`
   padding: 0 10%;
   display: grid;
-  grid-gap: 30px;
+  grid-gap: 20px;
   grid-template-areas:
-    'title title'
-    'map video';
-  grid-template-columns: 50% 50%;
+    '. title title .'
+    'prev map video next';
+  grid-template-columns: 80px 1fr 1fr 80px;
+  @media screen and (max-width: 767px) {
+    grid-template-areas:
+      'prev title title next'
+      'map map map map'
+      'video video video video';
+    grid-template-columns: 50px 1fr 1fr 50px;
+  }
 `;
 
 const Title = styled.h1`
@@ -23,41 +29,34 @@ const MapContainer = styled.div`
   grid-area: map;
 `;
 
-const ActiveLocation = styled.h3`
-  color: #fafafa;
-`;
-
-const HistoryContainer = styled.div`
-  margin-top: 30px;
-`;
-const HistoryTable = styled.div`
-  background: #fafafa;
-  border: 1px solid #777;
-  border-radius: 3px;
-`;
-const HistoryTile = styled.h3`
-  padding: 30px;
-  margin: 0;
-  border-bottom: 1px solid #777;
-  background: ${(props) => (props.active ? '#6DD5FA' : 'transparent')};
-`;
-
 const VideoTable = styled.div`
   grid-area: video;
 `;
 
-const NavButton = styled.div`
-  grid-area: video;
+const NavButton = styled.button`
+  background: transparent;
+  border: 3px solid ${whiteText};
+  color: ${whiteText};
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 2rem;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  margin-top: 30px;
+  &:hover {
+    opacity: 1;
+  }
+  &:focus {
+    outline: 0;
+  }
 `;
 
-export {
-  HomeWrapper,
-  Title,
-  MapContainer,
-  ActiveLocation,
-  HistoryContainer,
-  HistoryTable,
-  HistoryTile,
-  VideoTable,
-  NavButton,
-};
+const NavPrev = styled.div`
+  grid-area: prev;
+`;
+const NavNext = styled.div`
+  justify-self: end;
+  grid-area: next;
+`;
+
+export { HomeWrapper, Title, MapContainer, VideoTable, NavButton, NavPrev, NavNext };

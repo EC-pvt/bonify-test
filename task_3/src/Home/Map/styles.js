@@ -6,11 +6,10 @@ const MapContainer = styled.div`
 `;
 
 const Marker = styled.div`
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  background: linear-gradient(to right, #16a085, #f4d03f);
-  border: 2px solid #6dd5ed;
+  background: radial-gradient(#f7b733, #fc4a1a);
 `;
 
 export { MapContainer, Marker };
