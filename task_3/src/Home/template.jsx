@@ -45,7 +45,7 @@ class Home extends React.PureComponent {
             }
             onAddLocation={this.handleAddLocation}
           />
-          <History error={error} locations={locations} getActiveLocation={this.getActiveLocation} />
+          <History error={error} locations={locations} activeLocation={activeLocation} />
         </MapContainer>
 
         <VideoContainer>

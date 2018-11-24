@@ -1,7 +1,7 @@
 {
-  "name": "boilerplate",
+  "name": "videoapp",
   "version": "1.0.0",
-  "description": "My App",
+  "description": "Video Maps App",
   "scripts": {
     "test": "eslint src && jest --coverage",
     "start": "webpack-dev-server --mode development",
@@ -15,14 +15,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Emi-C/react-app-boilerplate.git"
+    "url": "https://gitlab.com/emil.costanzo/bonify-costanzo"
   },
   "author": "Emi-C",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Emi-C/react-app-boilerplate/issues"
-  },
-  "homepage": "https://github.com/Emi-C/react-app-boilerplate#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "google-map-react": "^1.1.1",

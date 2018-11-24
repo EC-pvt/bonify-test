@@ -4,8 +4,7 @@ import { HistoryContainer, Error, HistoryTable, HistoryTile } from './styles';
 
 class History extends React.PureComponent {
   render() {
-    const { locations, error, getActiveLocation } = this.props;
-    const activeLocation = getActiveLocation(locations);
+    const { locations, error, activeLocation } = this.props;
     return (
       <HistoryContainer>
         {!!error && <Error>{`Error from the Google guys, the say: ${error}`}</Error>}
@@ -33,7 +32,7 @@ class History extends React.PureComponent {
 History.propTypes = {
   locations: PropTypes.array.isRequired,
   error: PropTypes.string.isRequired,
-  getActiveLocation: PropTypes.func.isRequired,
+  activeLocation: PropTypes.object.isRequired,
 };
 
 export default History;
