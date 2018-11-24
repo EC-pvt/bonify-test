@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GoogleMap from './Map/GoogleMap';
-import VideoTile from './Video';
+import GoogleMap from './Map';
+import Video from './Video';
 import History from './History';
 import {
   HomeWrapper,
   Title,
   MapContainer,
-  VideoTable,
+  VideoContainer,
   NavButton,
   NavPrev,
   NavNext,
@@ -48,11 +48,9 @@ class Home extends React.PureComponent {
           <History error={error} locations={locations} getActiveLocation={this.getActiveLocation} />
         </MapContainer>
 
-        <VideoTable>
-          {videos.map((el, i) => (
-            <VideoTile key={i} video={el} />
-          ))}
-        </VideoTable>
+        <VideoContainer>
+          <Video videos={videos} />
+        </VideoContainer>
 
         <NavPrev>
           <NavButton type="button" data-direction="prev" onClick={this.handleChangeLocation}>

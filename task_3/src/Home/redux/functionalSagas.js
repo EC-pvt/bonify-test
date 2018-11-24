@@ -54,7 +54,6 @@ export function* getVideosRequest(payload) {
   if (data) {
     const videos = data.items.map((video) => ({
       id: video.id.videoId,
-      thumbnail: video.snippet.thumbnails.high.url,
       title: video.snippet.title,
     }));
     yield put(actions.HOME.GET_VIDEOS_REQUEST_SUCCESS.create(videos));

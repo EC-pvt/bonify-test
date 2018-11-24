@@ -29,7 +29,7 @@ const MapContainer = styled.div`
   grid-area: map;
 `;
 
-const VideoTable = styled.div`
+const VideoContainer = styled.div`
   grid-area: video;
 `;
 
@@ -59,4 +59,4 @@ const NavNext = styled.div`
   grid-area: next;
 `;
 
-export { HomeWrapper, Title, MapContainer, VideoTable, NavButton, NavPrev, NavNext };
+export { HomeWrapper, Title, MapContainer, VideoContainer, NavButton, NavPrev, NavNext };

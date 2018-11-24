@@ -40,8 +40,8 @@ const mockedLocations = {
 
 test('IF we provide array of locations, THEN getActiveLocation gives us the one with key active===true', () => {
   const props = { ...defaultProps, ...mockedLocations };
-  const app = shallow(<Home {...props} />);
-  const activeLocation = app.instance().getActiveLocation(app.instance().props.locations);
+  const wrapper = shallow(<Home {...props} />);
+  const activeLocation = wrapper.instance().getActiveLocation(wrapper.instance().props.locations);
   expect(activeLocation).toEqual({
     address: '15230 Francoforte, Germania',
     coordinates: {
