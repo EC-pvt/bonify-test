@@ -1,0 +1,20 @@
+{
+  "name": "babel-plugin-transform-console-bonify",
+  "version": "0.0.1",
+  "description": "Remove all console.* calls.",
+  "homepage": "https://gitlab.com/emil.costanzo/bonify-costanzo",
+  "repository": "https://gitlab.com/emil.costanzo/bonify-costanzo",
+  "bugs": "https://gitlab.com/emil.costanzo/bonify-costanzo/issues",
+  "author": "Emi-C",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "babel-plugin",
+    "bonify"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}
