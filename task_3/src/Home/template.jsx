@@ -15,6 +15,7 @@ import {
 
 class Home extends React.PureComponent {
   handleAddLocation = (e) => {
+    console.log('test string', 'for bonify', e); //to test Task 4, babel plugin
     const { addLocation } = this.props;
     addLocation({ lat: e.lat, lng: e.lng });
   };
@@ -45,7 +46,7 @@ class Home extends React.PureComponent {
             }
             onAddLocation={this.handleAddLocation}
           />
-          <History error={error} locations={locations} activeLocation={activeLocation} />
+          <History error={error} locations={locations} activeLocation={activeLocation || {}} />
         </MapContainer>
 
         <VideoContainer>

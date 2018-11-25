@@ -42,6 +42,7 @@
     "babel-loader": "^8.0.4",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-console-bonify": "0.0.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^5.9.0",

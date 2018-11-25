@@ -4,6 +4,7 @@
     ],
     "plugins": [
       "transform-class-properties",
+      "babel-plugin-transform-console-bonify",
       "@babel/plugin-syntax-object-rest-spread",
       "@babel/plugin-transform-runtime",
       ["module-resolver", {

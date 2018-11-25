@@ -1,83 +1,10 @@
-# babel-plugin-transform-remove-console-enhance
+# Frontend Team Lead Challenge
 
-This plugin removes all `console.*` calls.
+## Question 4
 
-## Example
+#### Babel plugin
 
-**In**
+The babel plugin can be tested directly into the task 3.
+When adding a location on the map, the app logs some information and the plugin transforms it accordingly.
 
-```javascript
-console.log("foo");
-console.error("bar");
-```
-
-**Out**
-
-```javascript
-```
-
-**In**
-
-```javascript
-console.log("foo");
-console.error("bar");
-```
-
-**Out**
-
-```javascript
-console.error("bar"); // set options to ignore error
-```
-
-## Installation
-
-```sh
-npm install babel-plugin-transform-remove-console-enhance
-```
-
-## Usage
-
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
-
-```json
-{
-  "plugins": ["transform-remove-console-enhance"]
-}
-```
-
-or
-
-```json
-{
-  "plugins": [
-    ["transform-remove-console-enhance", {
-        "exclude": ["error"]
-    }]
-  ]
-}
-```
-
-### options
-`options` can be object.
-
-```javascript
-{
-  "exclude": ["error"]
-}
-```
-
-### Via CLI
-
-```sh
-babel --plugins transform-remove-console-enhance script.js
-```
-
-### Via Node API
-
-```javascript
-require("babel-core").transform("code", {
-  plugins: ["transform-remove-console-enhance"]
-});
-```
+See `task_3/src/Home/template.jsx` at line 18 to play with the console.
